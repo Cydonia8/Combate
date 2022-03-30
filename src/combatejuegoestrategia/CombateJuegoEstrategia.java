@@ -26,9 +26,9 @@ public class CombateJuegoEstrategia {
         int[]jugador2 = new int[atributos.length];
         String nombre_p1, nombre_p2;
         
-        int[]ponderaciones_moradores={12,10,8,25,22,20,10,7,5,17,15,12,15,13,12};
-        int[]ponderaciones_puros={15,12,7,8,6,4,20,18,18,40,38,36,17,15,14};
-        int[]ponderaciones_guardianes={12,10,8,35,33,31,16,14,12,9,7,6,13,11,11};
+        int[]ponderaciones_moradores={13,12,11,23,22,21,9,8,7,11,10,10,15,13,12};
+        int[]ponderaciones_puros={13,12,11,9,8,7,25,24,23,35,34,33,17,16,15};
+        int[]ponderaciones_guardianes={13,12,11,25,24,23,16,15,14,9,8,7,13,12,12};
         
         //Introducción de datos del primer personaje
         do{
@@ -129,6 +129,9 @@ public class CombateJuegoEstrategia {
         int j= 0;
         int k = 1;
         int z = 2;
+        for (int i = 0; i < puntos_j1.length; i++) {
+            System.out.println(puntos_j1[i]);
+        }
         
         for (int i = 0; i < atributos.length; i++) {
             switch(clase_p1){
@@ -261,16 +264,17 @@ public class CombateJuegoEstrategia {
         
         int turno = 0;
         int puntos_vitalidad_p1, puntos_vitalidad_p2;
-        do{
-            turno++;
-            System.out.println("¡Turno del jugador "+turno+"!");
-            
-            if(turno == 2){
-                turno = 0;
-            }
-            puntos_vitalidad_p1 = jugador1[1];
-            puntos_vitalidad_p2 = jugador2[1];
-        }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
+        int ataque, defensa;
+//        do{
+//            turno++;
+//            System.out.println("¡Turno del jugador "+turno+"!");
+//            
+//            if(turno == 2){
+//                turno = 0;
+//            }
+//            puntos_vitalidad_p1 = jugador1[1];
+//            puntos_vitalidad_p2 = jugador2[1];
+//        }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
         
         
         
