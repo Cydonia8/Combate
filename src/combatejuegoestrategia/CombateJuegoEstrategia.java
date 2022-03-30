@@ -3,6 +3,7 @@ package combatejuegoestrategia;
 
 import java.util.Scanner;
 import combatejuegoestrategia.Especiales;
+import java.util.Random;
 
 
 public class CombateJuegoEstrategia {
@@ -10,11 +11,12 @@ public class CombateJuegoEstrategia {
     
     public static void main(String[] args) {
         Scanner teclado  = new Scanner(System.in);
+        Random aleatorio = new Random();
         
         int n_jugadores = 2;
         
-        String[]puntos_nombres = {"fuerza","fe","determinación","influjo","astucia"};
-        String[]atributos = {"ataque","vida","defensa","mana"};
+        String[]puntos_nombres = {"Fuerza","Fe","Determinación","Influjo","Astucia"};
+        String[]atributos = {"Ataque","Vida","Defensa","Mana"};
         
         int[]puntos_j1 = {10,10,10,10,10};
         int[]puntos_j2 = {10,10,10,10,10};
@@ -255,6 +257,20 @@ public class CombateJuegoEstrategia {
             z++;
             
         }
+        System.out.println(Especiales.muestraAtributos(atributos, jugador1));
+        
+        int turno = 0;
+        int puntos_vitalidad_p1, puntos_vitalidad_p2;
+        do{
+            turno++;
+            System.out.println("¡Turno del jugador "+turno+"!");
+            
+            if(turno == 2){
+                turno = 0;
+            }
+            puntos_vitalidad_p1 = jugador1[1];
+            puntos_vitalidad_p2 = jugador2[1];
+        }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
         
         
         

@@ -147,4 +147,12 @@ public class Especiales {
         
         return mensaje;
     }
+    
+    public static String muestraAtributos(String[]atributos, int[]jugador){
+        String resultado = "";
+        for (int i = 0; i < atributos.length; i++) {
+            resultado+=atributos[i]+": "+jugador[i]+"\n";
+        }
+        return resultado;
+    }
 }
