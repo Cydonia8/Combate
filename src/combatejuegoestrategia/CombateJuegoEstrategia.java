@@ -152,32 +152,45 @@ public class CombateJuegoEstrategia {
         
         System.out.println(Especiales.muestraAtributos(atributos, tabla_atributos));
         
-        int turno = 0;
+        int turno_ataque,turno_defensa, rondas;
         int puntos_vitalidad_p1, puntos_vitalidad_p2;
-        int ataque, defensa;
-//        do{
-//            System.out.println("¡Turno del jugador "+turno+"!");
-//            
-//            if(turno == 0){
-//                ataque = aleatorio.nextInt(tabla_atributos[turno][0]);
-//                defensa = aleatorio.nextInt(tabla_atributos[turno+1][3]);
-//                
-//            }else{
-//                ataque = aleatorio.nextInt(tabla_atributos[turno-1][0]);
-//                defensa = aleatorio.nextInt(tabla_atributos[turno][3]);
-//            }
-//            
-//            turno++;
-//            if(turno == 2){
-//                turno = 0;
-//            }
-//            puntos_vitalidad_p1 = tabla_atributos[0][1];
-//            puntos_vitalidad_p2 = tabla_atributos[1][1];
-//        }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
+        int ataque, defensa, impacto;
         
+        turno_ataque = 0;
+        turno_defensa = 1;
+        rondas = 0;
+        do{
+            rondas++;
+            System.out.println("¡Turno del jugador "+turno_ataque+"!");
+            
+            ataque = aleatorio.nextInt(tabla_atributos[turno_ataque][0]);
+            defensa = aleatorio.nextInt(tabla_atributos[turno_defensa][2]);
+            
+            if(ataque > defensa){
+                System.out.println("¡Gana el atacante!");
+                impacto = ataque - defensa;
+                tabla_atributos[turno_defensa][1]-=impacto;
+            }else{
+                System.out.println("¡Gana el defensor!");
+            }             
+            
+            turno_ataque++;
+            turno_defensa--;
+            if(rondas % 2 == 0){
+                turno_ataque = 0;
+                turno_defensa = 1;
+            }
+            puntos_vitalidad_p1 = tabla_atributos[0][1];
+            puntos_vitalidad_p2 = tabla_atributos[1][1];
+        }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
         
-        
-        
+        if(puntos_vitalidad_p1 > puntos_vitalidad_p2){
+            System.out.println("Victoria del jugador 1");
+        }else{
+            System.out.println("Victoria del jugador 2");
+        }
+        System.out.println(puntos_vitalidad_p1);
+        System.out.println(puntos_vitalidad_p2);
         
     }
     
