@@ -191,11 +191,11 @@ public class CombateJuegoEstrategia {
         }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
         
         if(puntos_vitalidad_p1 > puntos_vitalidad_p2){
-            System.out.println("Victoria del jugador 1: "+nombres_jugadores[rondas-1]);
-            System.out.println(clases_jugadores.get(nombres_jugadores[rondas-1]));
+            System.out.println("Victoria del jugador 1: "+nombres_jugadores[0]);
+            System.out.println(clases_jugadores.get(nombres_jugadores[0]));
         }else{
-            System.out.println("Victoria del jugador 2: "+nombres_jugadores[rondas-1]);
-            System.out.println(clases_jugadores.get(nombres_jugadores[rondas-1]));
+            System.out.println("Victoria del jugador 2: "+nombres_jugadores[1]);
+            System.out.println(clases_jugadores.get(nombres_jugadores[1]));
         }
         
     }
