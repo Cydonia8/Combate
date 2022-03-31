@@ -1,6 +1,8 @@
 
 package combatejuegoestrategia;
 
+import java.util.HashMap;
+
 
 public class Especiales {
     public static String avatar_moradores(){
@@ -140,18 +142,24 @@ public class Especiales {
     
     public static String mensajeRepartoPuntos(int puntos_totales, String[] clases){
         String mensaje = "Ahora es el turno de potenciar tus habilidades. Ten en cuenta"
-                    + " que la 'fe' es más efectiva en los " + clases[1] + ", la 'determinación' en los \n"
-                    + clases[0] + " y el 'influjo' en los " + clases[2] + "."
-                    + " En total dispones de " + puntos_totales + " puntos. Ninguna habilidad "
-                    + "puede tener más de 100 puntos.";
+                    + " que los " + clases[1] + " son más fuertes, pero apenas tienen maná, los \n"
+                    + clases[0] + " tienen buena defensa gracias a la protección de Saturno, y los " + clases[2]
+                    + " tienen una alta cantidad de maná. Tienes\nen total " + puntos_totales + " puntos. Ninguna habilidad "
+                    + "puede tener más de 100 puntos. \nSi esto ocurriese, o si intentas dar más puntos "
+                    + " de los que tengas disponibles, se te volverá a pedir un valor.";
         
         return mensaje;
     }
     
-    public static String muestraAtributos(String[]atributos, int[]jugador){
+    public static String muestraAtributos(String[]atributos, int[][]jugador){
         String resultado = "";
-        for (int i = 0; i < atributos.length; i++) {
-            resultado+=atributos[i]+": "+jugador[i]+"\n";
+        for (int i = 0; i < jugador.length; i++) {
+            resultado+="Jugador "+(i+1)+"\n";
+            for (int j = 0; j < jugador[i].length; j++) {
+                resultado+=atributos[j]+": "+jugador[i][j]+" ";
+            }
+            resultado+="\n";
+            
         }
         return resultado;
     }

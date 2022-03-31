@@ -28,13 +28,9 @@ public class CombateJuegoEstrategia {
         
         int[]jugador1 = {0,0,0,0};
         int[]jugador2 = {0,0,0,0};
-        String nombre_p1, nombre_p2;
         String nombre;
+        String[] clases_escogidas = new String[n_jugadores];
         HashMap<String,String> clases_jugadores = new HashMap<>();
-        
-        int[]ponderaciones_moradores={10,9,8,30,29,28,10,9,8,10,9,8,16,15,15};
-        int[]ponderaciones_puros={10,9,8,10,9,8,30,29,28,40,39,38,16,15,15};
-        int[]ponderaciones_guardianes={10,9,8,25,24,23,15,14,13,10,9,8,13,12,11};
         
         //Introducción de datos de los personajes
         for (int i = 0; i < n_jugadores; i++) {
@@ -55,6 +51,7 @@ public class CombateJuegoEstrategia {
                 System.out.print("Clase: ");
                 opcion = teclado.nextInt();
             }while(opcion != 1 && opcion != 2 && opcion != 3);
+            clases_escogidas[i] = clases[opcion-1];
             String avatar = "";
 
             switch(opcion){
@@ -87,162 +84,95 @@ public class CombateJuegoEstrategia {
             }
 
         }
-        
-        
-        //Configuración de los atributos para el primer personaje INCLUIR UN ARRAY CON LOS LÍMITES PARA CADA PARÁMETRO
+                
+        //Configuración de los atributos para los personajes
         //Estas variables controlan los índices de los arrays de ponderaciones de cada clase
        
+        for (int i = 0; i < n_jugadores; i++) {
+            for (int j = 0; j < atributos.length; j++) {
+                switch(clases_escogidas[i]){
+                    case "Moradores del Sendero":
+                        if(tabla_puntos_asignados[i][j] >= 10 && tabla_puntos_asignados[i][j] <= 44){
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/10;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/10;
+                        }else if(tabla_puntos_asignados[i][j] >= 45 && tabla_puntos_asignados[i][j] <= 74){
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/8;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/8;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/9;
+                        }else{
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/7;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/7;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/8;
+                        }
+                        break;
+                    case "Puros de Cuerpo y Alma":
+                        if(tabla_puntos_asignados[i][j] >= 10 && tabla_puntos_asignados[i][j] <= 44){
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/10;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/35;
+                        }else if(tabla_puntos_asignados[i][j] >= 45 && tabla_puntos_asignados[i][j] <= 74){
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/8;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/33;
+                        }else{
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/8;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/7;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/32;
+                        }
+                        break;
+                    case "Guardianes de Saturno":
+                        if(tabla_puntos_asignados[i][j] >= 10 && tabla_puntos_asignados[i][j] <= 44){
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/15;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/8;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/10;
+                        }else if(tabla_puntos_asignados[i][j] >= 45 && tabla_puntos_asignados[i][j] <= 74){
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/14;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/7;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/9;
+                        }else{
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/13;
+                            tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/5;
+                            tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
+                            tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/8;
+                        }
+                        break;
+                }
+            }
+        }
         
-//        for (int i = 0; i < n_jugadores; i++) {
-//            for (int j = 0; j < atributos.length; j++) {
-//                
-//            }
-//            
-//        }
         
-//        for (int i = 0; i < atributos.length; i++) {
-//            switch(clase_p1){
-//                case "Moradores del Sendero":
-//                    if(puntos_j1[i] >= 10 && puntos_j1[i] <= 44){
-//                        jugador1[0] += puntos_j1[i]/10;
-//                        jugador1[1] += puntos_j1[i]/9;
-//                        jugador1[2] += puntos_j1[i]/9;
-//                        jugador1[3] += puntos_j1[i]/10;
-//                        System.out.println(jugador1[0]);
-//                    }else if(puntos_j1[i] >= 45 && puntos_j1[i] <= 74){
-//                        jugador1[0] += puntos_j1[i]/10;
-//                        jugador1[1] += puntos_j1[i] /10;
-//                        jugador1[2] += puntos_j1[i]/9;
-//                        jugador1[3] += puntos_j1[i]/9;
-//                    }else{
-//                        jugador1[0] += puntos_j1[i]/10;
-//                        jugador1[1] += puntos_j1[i]/10;
-//                        jugador1[2] += puntos_j1[i]/9;
-//                        jugador1[3] += puntos_j1[i]/11;
-//                    }
-//                    break;
-//                case "Puros de Cuerpo y Alma":
-//                    if(puntos_j1[i] >= 10 && puntos_j1[i] <= 44){
-//                        jugador1[0] += puntos_j1[i]/ponderaciones_puros[j];
-//                        jugador1[1] += puntos_j1[i]/ponderaciones_puros[j];
-//                        jugador1[2] += puntos_j1[i] /ponderaciones_puros[j];
-//                        jugador1[3] += puntos_j1[i] /ponderaciones_puros[j];
-//                    }else if(puntos_j1[i] >= 45 && puntos_j1[i] <= 74){
-//                        jugador1[0] += puntos_j1[i]/ponderaciones_puros[k];
-//                        jugador1[1] += puntos_j1[i] /ponderaciones_puros[k];
-//                        jugador1[2] += puntos_j1[i]/ponderaciones_puros[k];
-//                        jugador1[3] += puntos_j1[i]/ponderaciones_puros[k];
-//                    }else{
-//                        jugador1[0] += puntos_j1[i]/ponderaciones_puros[z];
-//                        jugador1[1] += puntos_j1[i]/ponderaciones_puros[z];
-//                        jugador1[2] += puntos_j1[i]/ponderaciones_puros[z];
-//                        jugador1[3] += puntos_j1[i]/ponderaciones_puros[z];
-//                    }
-//                    break;
-//                case "Guardianes de Saturno":
-//                    if(puntos_j1[i] >= 10 && puntos_j1[i] <= 44){
-//                        jugador1[0] += puntos_j1[i]/ponderaciones_guardianes[j];
-//                        jugador1[1] += puntos_j1[i]/ponderaciones_guardianes[j];
-//                        jugador1[2] += puntos_j1[i] /ponderaciones_guardianes[j];
-//                        jugador1[3] += puntos_j1[i] /ponderaciones_guardianes[j];
-//                    }else if(puntos_j1[i] >= 45 && puntos_j1[i] <= 74){
-//                        jugador1[0] += puntos_j1[i]/ponderaciones_guardianes[k];
-//                        jugador1[1] += puntos_j1[i] /ponderaciones_guardianes[k];
-//                        jugador1[2] += puntos_j1[i]/ponderaciones_guardianes[k];
-//                        jugador1[3] += puntos_j1[i]/ponderaciones_guardianes[k];
-//                    }else{
-//                        jugador1[0] += puntos_j1[i]/ponderaciones_guardianes[z];
-//                        jugador1[1] += puntos_j1[i]/ponderaciones_guardianes[z];
-//                        jugador1[2] += puntos_j1[i]/ponderaciones_guardianes[z];
-//                        jugador1[3] += puntos_j1[i]/ponderaciones_guardianes[z];
-//                    }
-//                    break;
-//            }
-//            j++;
-//            k++;
-//            z++;
-//            
-//        }
-//        
-//        //Configuración de los atributos para el segundo personaje
-//        j= 0;
-//        k = 1;
-//        z = 2;
-//        for (int i = 0; i < atributos.length; i++) {
-//            switch(clase_p2){
-//                case "Moradores del Sendero":
-//                    if(puntos_j2[i] >= 10 && puntos_j2[i] <= 44){
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_moradores[j];
-//                        jugador2[1] += puntos_j2[i]/ponderaciones_moradores[j];
-//                        jugador2[2] += puntos_j2[i] /ponderaciones_moradores[j];
-//                        jugador2[3] += puntos_j2[i] /ponderaciones_moradores[j];
-//                    }else if(puntos_j2[i] >= 45 && puntos_j2[i] <= 74){
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_moradores[k];
-//                        jugador2[1] += puntos_j2[i] /ponderaciones_moradores[k];
-//                        jugador2[2] += puntos_j2[i]/ponderaciones_moradores[k];
-//                        jugador2[3] += puntos_j2[i]/ponderaciones_moradores[k];
-//                    }else{
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_moradores[z];
-//                        jugador2[1] += puntos_j2[i]/ponderaciones_moradores[z];
-//                        jugador2[2] += puntos_j2[i]/ponderaciones_moradores[z];
-//                        jugador2[3] += puntos_j2[i]/ponderaciones_moradores[z];
-//                    }
-//                    break;
-//                case "Puros de Cuerpo y Alma":
-//                    if(puntos_j2[i] >= 10 && puntos_j2[i] <= 44){
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_puros[j];
-//                        jugador2[1] += puntos_j2[i]/ponderaciones_puros[j];
-//                        jugador2[2] += puntos_j2[i] /ponderaciones_puros[j];
-//                        jugador2[3] += puntos_j2[i] /ponderaciones_puros[j];
-//                    }else if(puntos_j2[i] >= 45 && puntos_j2[i] <= 74){
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_puros[k];
-//                        jugador2[1] += puntos_j2[i] /ponderaciones_puros[k];
-//                        jugador2[2] += puntos_j2[i]/ponderaciones_puros[k];
-//                        jugador2[3] += puntos_j2[i]/ponderaciones_puros[k];
-//                    }else{
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_puros[z];
-//                        jugador2[1] += puntos_j2[i]/ponderaciones_puros[z];
-//                        jugador2[2] += puntos_j2[i]/ponderaciones_puros[z];
-//                        jugador2[3] += puntos_j2[i]/ponderaciones_puros[z];
-//                    }
-//                    break;
-//                case "Guardianes de Saturno":
-//                    if(puntos_j2[i] >= 10 && puntos_j2[i] <= 44){
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_guardianes[j];
-//                        jugador2[1] += puntos_j2[i]/ponderaciones_guardianes[j];
-//                        jugador2[2] += puntos_j2[i] /ponderaciones_guardianes[j];
-//                        jugador2[3] += puntos_j2[i] /ponderaciones_guardianes[j];
-//                    }else if(puntos_j2[i] >= 45 && puntos_j2[i] <= 74){
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_guardianes[k];
-//                        jugador2[1] += puntos_j2[i] /ponderaciones_guardianes[k];
-//                        jugador2[2] += puntos_j2[i]/ponderaciones_guardianes[k];
-//                        jugador2[3] += puntos_j2[i]/ponderaciones_guardianes[k];
-//                    }else{
-//                        jugador2[0] += puntos_j2[i]/ponderaciones_guardianes[z];
-//                        jugador2[1] += puntos_j2[i]/ponderaciones_guardianes[z];
-//                        jugador2[2] += puntos_j2[i]/ponderaciones_guardianes[z];
-//                        jugador2[3] += puntos_j2[i]/ponderaciones_guardianes[z];
-//                    }
-//            }
-//            j++;
-//            k++;
-//            z++;
-//            
-//        }
-//        System.out.println(Especiales.muestraAtributos(atributos, jugador1));
+        System.out.println(Especiales.muestraAtributos(atributos, tabla_atributos));
         
         int turno = 0;
         int puntos_vitalidad_p1, puntos_vitalidad_p2;
         int ataque, defensa;
 //        do{
-//            turno++;
 //            System.out.println("¡Turno del jugador "+turno+"!");
 //            
+//            if(turno == 0){
+//                ataque = aleatorio.nextInt(tabla_atributos[turno][0]);
+//                defensa = aleatorio.nextInt(tabla_atributos[turno+1][3]);
+//                
+//            }else{
+//                ataque = aleatorio.nextInt(tabla_atributos[turno-1][0]);
+//                defensa = aleatorio.nextInt(tabla_atributos[turno][3]);
+//            }
+//            
+//            turno++;
 //            if(turno == 2){
 //                turno = 0;
 //            }
-//            puntos_vitalidad_p1 = jugador1[1];
-//            puntos_vitalidad_p2 = jugador2[1];
+//            puntos_vitalidad_p1 = tabla_atributos[0][1];
+//            puntos_vitalidad_p2 = tabla_atributos[1][1];
 //        }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
         
         
