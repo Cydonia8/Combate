@@ -22,13 +22,13 @@ public class CombateJuegoEstrategia {
         int[]puntos_j2 = {10,10,10,10,10};
         int[][] tabla_puntuacion = new int[n_jugadores][atributos.length];
         
-        int[]jugador1 = new int[atributos.length];
-        int[]jugador2 = new int[atributos.length];
+        int[]jugador1 = {0,0,0,0};
+        int[]jugador2 = {0,0,0,0};
         String nombre_p1, nombre_p2;
         
-        int[]ponderaciones_moradores={13,12,11,23,22,21,9,8,7,11,10,10,15,13,12};
-        int[]ponderaciones_puros={13,12,11,9,8,7,25,24,23,35,34,33,17,16,15};
-        int[]ponderaciones_guardianes={13,12,11,25,24,23,16,15,14,9,8,7,13,12,12};
+        int[]ponderaciones_moradores={10,9,8,30,29,28,10,9,8,10,9,8,16,15,15};
+        int[]ponderaciones_puros={10,9,8,10,9,8,30,29,28,40,39,38,16,15,15};
+        int[]ponderaciones_guardianes={10,9,8,25,24,23,15,14,13,10,9,8,13,12,11};
         
         //Introducción de datos del primer personaje
         do{
@@ -137,20 +137,21 @@ public class CombateJuegoEstrategia {
             switch(clase_p1){
                 case "Moradores del Sendero":
                     if(puntos_j1[i] >= 10 && puntos_j1[i] <= 44){
-                        jugador1[0] += puntos_j1[i]/ponderaciones_moradores[j];
-                        jugador1[1] += puntos_j1[i]/ponderaciones_moradores[j];
-                        jugador1[2] += puntos_j1[i] /ponderaciones_moradores[j];
-                        jugador1[3] += puntos_j1[i] /ponderaciones_moradores[j];
+                        jugador1[0] += puntos_j1[i]/10;
+                        jugador1[1] += puntos_j1[i]/9;
+                        jugador1[2] += puntos_j1[i]/9;
+                        jugador1[3] += puntos_j1[i]/10;
+                        System.out.println(jugador1[0]);
                     }else if(puntos_j1[i] >= 45 && puntos_j1[i] <= 74){
-                        jugador1[0] += puntos_j1[i]/ponderaciones_moradores[k];
-                        jugador1[1] += puntos_j1[i] /ponderaciones_moradores[k];
-                        jugador1[2] += puntos_j1[i]/ponderaciones_moradores[k];
-                        jugador1[3] += puntos_j1[i]/ponderaciones_moradores[k];
+                        jugador1[0] += puntos_j1[i]/10;
+                        jugador1[1] += puntos_j1[i] /10;
+                        jugador1[2] += puntos_j1[i]/9;
+                        jugador1[3] += puntos_j1[i]/9;
                     }else{
-                        jugador1[0] += puntos_j1[i]/ponderaciones_moradores[z];
-                        jugador1[1] += puntos_j1[i]/ponderaciones_moradores[z];
-                        jugador1[2] += puntos_j1[i]/ponderaciones_moradores[z];
-                        jugador1[3] += puntos_j1[i]/ponderaciones_moradores[z];
+                        jugador1[0] += puntos_j1[i]/10;
+                        jugador1[1] += puntos_j1[i]/10;
+                        jugador1[2] += puntos_j1[i]/9;
+                        jugador1[3] += puntos_j1[i]/11;
                     }
                     break;
                 case "Puros de Cuerpo y Alma":
@@ -188,6 +189,7 @@ public class CombateJuegoEstrategia {
                         jugador1[2] += puntos_j1[i]/ponderaciones_guardianes[z];
                         jugador1[3] += puntos_j1[i]/ponderaciones_guardianes[z];
                     }
+                    break;
             }
             j++;
             k++;
