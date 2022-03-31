@@ -161,36 +161,42 @@ public class CombateJuegoEstrategia {
         rondas = 0;
         do{
             rondas++;
-            System.out.println("¡Turno del jugador "+turno_ataque+"!");
+            System.out.println("¡Turno del jugador "+(turno_ataque+1)+"!");
             
             ataque = aleatorio.nextInt(tabla_atributos[turno_ataque][0]);
             defensa = aleatorio.nextInt(tabla_atributos[turno_defensa][2]);
+            System.out.println("El ataque genera "+ataque+", mientras que la defensa genera "+defensa);
             
             if(ataque > defensa){
-                System.out.println("¡Gana el atacante!");
+                System.out.println("¡Gana el atacante!\n");
                 impacto = ataque - defensa;
                 tabla_atributos[turno_defensa][1]-=impacto;
             }else{
-                System.out.println("¡Gana el defensor!");
-            }             
-            
-            turno_ataque++;
-            turno_defensa--;
-            if(rondas % 2 == 0){
-                turno_ataque = 0;
-                turno_defensa = 1;
+                System.out.println("¡Gana el defensor!\n");
             }
             puntos_vitalidad_p1 = tabla_atributos[0][1];
             puntos_vitalidad_p2 = tabla_atributos[1][1];
+            
+            System.out.println("Puntos de vida del jugador 1: "+puntos_vitalidad_p1);
+            System.out.println("Puntos de vida del jugador 2: "+puntos_vitalidad_p2+"\n");
+            
+            turno_ataque++;
+            turno_defensa--;
+            if(rondas == 2){
+                turno_ataque = 0;
+                turno_defensa = 1;
+                rondas = 0;
+            }
+            
         }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
         
         if(puntos_vitalidad_p1 > puntos_vitalidad_p2){
-            System.out.println("Victoria del jugador 1");
+            System.out.println("Victoria del jugador 1: "+nombres_jugadores[rondas-1]);
+            System.out.println(clases_jugadores.get(nombres_jugadores[rondas-1]));
         }else{
-            System.out.println("Victoria del jugador 2");
+            System.out.println("Victoria del jugador 2: "+nombres_jugadores[rondas-1]);
+            System.out.println(clases_jugadores.get(nombres_jugadores[rondas-1]));
         }
-        System.out.println(puntos_vitalidad_p1);
-        System.out.println(puntos_vitalidad_p2);
         
     }
     
