@@ -138,7 +138,7 @@ public class Especiales {
         return avatar_protectores;
     }
     
-    public static String mensajeRepartoPuntos(String nombre, int puntos_totales, String[] clases){
+    public static String mensajeRepartoPuntos(int puntos_totales, String[] clases){
         String mensaje = "Ahora es el turno de potenciar tus habilidades. Ten en cuenta"
                     + " que la 'fe' es más efectiva en los " + clases[1] + ", la 'determinación' en los \n"
                     + clases[0] + " y el 'influjo' en los " + clases[2] + "."
