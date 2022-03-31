@@ -21,6 +21,8 @@ public class CombateJuegoEstrategia {
         int[]puntos_j1 = {10,10,10,10,10};
         int[]puntos_j2 = {10,10,10,10,10};
         int[][] tabla_puntuacion = new int[n_jugadores][atributos.length];
+        //Añadir otra matriz que controlará los atributos de cada personaje para reducir código
+        //Añadir un array para el nombre de cada jugador, y quizás un hash map que, para cada clase, contenga su avatar
         
         int[]jugador1 = new int[atributos.length];
         int[]jugador2 = new int[atributos.length];
