@@ -35,7 +35,7 @@ public class CombateJuegoEstrategia {
         
         //Introducción de datos de los personajes
         for (int i = 0; i < n_jugadores; i++) {
-                    
+            //Se pide el nombre del jugador y se introduce en el array de nombres
             do{
                 if(i == 0){
                     System.out.print("\nEmpecemos con tu identidad, tu nombre, aquello por lo que se te conocerá: ");
@@ -48,6 +48,7 @@ public class CombateJuegoEstrategia {
           
             int opcion;
 
+            //Se pide la clase del jugador y se añade en el array de clases    
             System.out.println("\n"+Especiales.mensaje_escoger_clase());
             do{
                 System.out.println("Escoge una de las siguientes clases");
@@ -60,6 +61,7 @@ public class CombateJuegoEstrategia {
             clases_escogidas[i] = clases[opcion-1];
             String avatar = "";
 
+            //Se asigna el avatar al jugador en base a la clase, guardando su nombre y el propio avatar en un HashMap
             switch(opcion){
                 case 1:
                     avatar = Especiales.avatar_moradores();
@@ -77,6 +79,7 @@ public class CombateJuegoEstrategia {
             int puntos_restantes = 200;
             int puntos_asignados;
 
+            //Asignación de puntos de cada personaje, controlando ciertas condiciones
             System.out.println("\n"+Especiales.mensajeRepartoPuntos(puntos_totales, clases));
 
             for (int j = 0; j < puntos_nombres.length; j++) {
@@ -85,7 +88,7 @@ public class CombateJuegoEstrategia {
                     System.out.print("Puntos que asignarás a la "+puntos_nombres[j]+": ");
                     puntos_asignados = teclado.nextInt();
                     System.out.println("");
-                }while(puntos_asignados < 0 || puntos_asignados > puntos_restantes || puntos_asignados + tabla_puntos_asignados[i][j] > 100);
+                }while(puntos_asignados < 10 || puntos_asignados > puntos_restantes || puntos_asignados + tabla_puntos_asignados[i][j] > 100);
                 tabla_puntos_asignados[i][j]+= puntos_asignados;
                 puntos_restantes -= puntos_asignados;
             }

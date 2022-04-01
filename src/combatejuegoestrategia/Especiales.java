@@ -128,7 +128,7 @@ public class Especiales {
                      + clases[0] + " tienen buena defensa gracias a la protección de Saturno, y los " + clases[2]
                      + " tienen una alta cantidad de maná.\nTienes en total " + puntos_totales + " puntos. Ninguna habilidad "
                      + "puede tener más de 100 puntos. \nSi esto ocurriese, o si intentas dar más puntos "
-                     + "de los que tengas disponibles, se te volverá a pedir un valor.\n"
+                     + "de los que tengas disponibles, se te volverá a pedir un valor, al igual que si das menos de 10 puntos.\n"
                      + "-------------------------------------------------------------------------------------------------------------------------------------------\n";
         
         return mensaje;
