@@ -29,19 +29,26 @@ public class CombateJuegoEstrategia {
         String[] clases_escogidas = new String[n_jugadores];
         HashMap<String,String> clases_jugadores = new HashMap<>();
         
+        System.out.println(Especiales.mensajeMundo());
+        
         //Introducción de datos de los personajes
         for (int i = 0; i < n_jugadores; i++) {
                     
             do{
-                System.out.print("¿Qué nombre quieres para tu personaje? ");
+                if(i == 0){
+                    System.out.print("\nEmpecemos con tu identidad, tu nombre, aquello por lo que se te conocerá: ");
+                }else{
+                    System.out.println("Pasemos al segundo protagonista de nuestra historia: ");
+                }
                 nombre = teclado.next();
             }while(nombre.equals(""));
             nombres_jugadores[i] = nombre;
           
             int opcion;
 
+            System.out.println("\n"+Especiales.mensaje_escoger_clase());
             do{
-                System.out.println("\nEscoge, sabiamente, una de las siguientes clases.");
+                System.out.println("Escoge una de las siguientes clases");
                 System.out.println("1. " + clases[0]);
                 System.out.println("2. " + clases[1]);
                 System.out.println("3. " + clases[2]);
@@ -68,13 +75,14 @@ public class CombateJuegoEstrategia {
             int puntos_restantes = 200;
             int puntos_asignados;
 
-            System.out.println(Especiales.mensajeRepartoPuntos(puntos_totales, clases));
+            System.out.println("\n"+Especiales.mensajeRepartoPuntos(puntos_totales, clases));
 
             for (int j = 0; j < puntos_nombres.length; j++) {
-                System.out.println("Te quedan "+puntos_restantes+" por asignar.");
+                System.out.println("Te quedan "+puntos_restantes+" puntos por asignar.");
                 do{
-                    System.out.println("Puntos que asignarás a "+puntos_nombres[j]);
+                    System.out.print("Puntos que asignarás a la "+puntos_nombres[j]+": ");
                     puntos_asignados = teclado.nextInt();
+                    System.out.println("");
                 }while(puntos_asignados < 0 || puntos_asignados > puntos_restantes || puntos_asignados + tabla_puntos_asignados[i][j] > 100);
                 tabla_puntos_asignados[i][j]+= puntos_asignados;
                 puntos_restantes -= puntos_asignados;
@@ -197,25 +205,29 @@ public class CombateJuegoEstrategia {
                     
                     break;
                 case 'E':
-                    int mana_restado, mana_resultante;
+                    if(tabla_atributos[jugador_con_turno][pos_mana] > 0){
+                        int mana_restado, mana_resultante;
 
-                    mana_restado = tabla_atributos[jugador_con_turno][pos_mana] / 2;
-                    mana_resultante = tabla_atributos[jugador_con_turno][pos_mana] - mana_restado;
-                    
-                    System.out.println("Tienes "+tabla_atributos[jugador_con_turno][pos_mana]+" puntos de "+atributos[pos_mana]);
-                    System.out.println("Vas a perder la mitad de maná, por lo que te quedarás con "+ mana_resultante+" puntos");
-                    System.out.println("Tu vida aumentará en "+mana_restado +" puntos\n");
-                    
-                    tabla_atributos[jugador_con_turno][pos_vida] += mana_restado;
-                    tabla_atributos[jugador_con_turno][pos_mana] = mana_resultante;
-                    
-                    if(mana_resultante == 1){
-                        System.out.println("Te has quedado sin maná, por lo que no podrás volver a usar el especial.\n"
-                                + "Si intentas hacerlo, perderás el turno.\n");
+                        mana_restado = tabla_atributos[jugador_con_turno][pos_mana] / 2;
+                        mana_resultante = tabla_atributos[jugador_con_turno][pos_mana] - mana_restado;
+
+                        System.out.println("Tienes "+tabla_atributos[jugador_con_turno][pos_mana]+" puntos de "+atributos[pos_mana]);
+                        System.out.println("Vas a perder la mitad de maná, por lo que te quedarás con "+ mana_resultante+" punto/s");
+                        System.out.println("Tu vida aumentará en "+mana_restado +" punto/s\n");
+
+                        tabla_atributos[jugador_con_turno][pos_vida] += mana_restado;
+                        tabla_atributos[jugador_con_turno][pos_mana] = mana_resultante;
+
+                        if(mana_resultante == 1){
+                            System.out.println("No tienes maná suficiente para volver a recuperar vida.\n");
+                        }
+
+                        puntos_vida[jugador_con_turno] = tabla_atributos[jugador_con_turno][pos_vida];
+    //                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
+    //                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
+                    }else{
+                        System.out.println("No tienes puntos de maná.");
                     }
-                    puntos_vida[jugador_con_turno] = tabla_atributos[jugador_con_turno][pos_vida];
-//                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
-//                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
                     break;
             }
              
@@ -235,23 +247,24 @@ public class CombateJuegoEstrategia {
             }
             
             contador = 0;
-            while(!perdedor_encontrado && contador < jugador_con_turno){
+            while(!perdedor_encontrado && contador <= jugador_con_turno){
                 if(puntos_vida[contador] <= 0){
                     perdedor_encontrado = true;
+                }else{
+                    contador++;
                 }
-                contador++;
+                
             }
             
         }while(!perdedor_encontrado);
         
-        if(puntos_vitalidad_p1 > puntos_vitalidad_p2){
-            System.out.println("Victoria del jugador 1: "+nombres_jugadores[0]);
-            System.out.println(clases_jugadores.get(nombres_jugadores[0]));
-        }else{
-            System.out.println("Victoria del jugador 2: "+nombres_jugadores[1]);
-            System.out.println(clases_jugadores.get(nombres_jugadores[1]));
-        }
-        
+        int mayor = 0;
+        for (int i = 0; i < puntos_vida.length; i++) {
+            if(puntos_vida[i] > puntos_vida[mayor]){
+                mayor = i;
+            }
+        }        
+            System.out.println("Victoria de "+nombres_jugadores[mayor]);
+            System.out.println(clases_jugadores.get(nombres_jugadores[mayor]));
     }
-    
 }

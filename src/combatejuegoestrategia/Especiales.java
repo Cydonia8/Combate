@@ -5,6 +5,31 @@ import java.util.HashMap;
 
 
 public class Especiales {
+    
+    public static String mensajeMundo(){
+        String mensaje = " ---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+        mensaje+=" En Ravenskill reina el caos. Mientras que los Puros de Cuerpo y Alma rechazan cualquier tipo "
+                + " de magia y apuestan por la pureza del alma, los Moradores del Sendero\n quedan en una especie de "
+                + " limbo tras morir, teniendo que seguir un camino sólo visible para ellos que los llevará hasta Saturno, "
+                + " el destino final de todos los que\n han sido bendecidos con su gracia. Por otra parte, los Guardianes de Saturno "
+                + " ayudan a los Moradores y protegen los obeliscos de Saturno de los ataques de los Puros.\n\n Sin embargo, con el"
+                + " paso de los años, la tensión ha ido aumentando de forma paulatina. Los Moradores del Sendero, elegidos contra"
+                + " su voluntad, empezaron a atacar a\n los Guardianes de Saturno, ya que se negaban a aceptar su destino. A su vez, los"
+                + " Puros atacaban a los Moradores y a los Guardianes ya que consideraban todo ese asunto\n fruto de las artes oscuras"
+                + " y de la herejía. Los Guardianes a su vez luchaban contra los Puros para defender a aquellos Moradores que desearan"
+                + " completar El Camino. \n En este contexto...¿de qué lado estarás?\n "
+                + "----------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+        return mensaje;
+    }
+    
+    public static String mensaje_escoger_clase(){
+        String mensaje = "-----------------------------------------------------------------------------------------------------------------------\n"
+                + "Llega el momento de escoger un bando. Ten en cuenta que los Puros de Cuerpo y Alma apenas tendrán maná, únicamente\n confían"
+                + " en su gran fuerza y en su fe hacia aquello que antaño se veneraba como Dios. Por otro lado, tanto los Moradores\n del Sendero "
+                + " como los Guardianes de Saturno tendrán un maná más elevado, lo que les permitirá regenerar su vida gracias\n al influjo de Saturno.\n"
+                + "-----------------------------------------------------------------------------------------------------------------------\n\n";
+        return mensaje;
+    }
     public static String avatar_moradores(){
         final String avatar_moradores = " WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\n" +
                                         "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWNXK00OkxddoooddxkOKXWWWWWWWWWWWWWWWWWWWWWWW\n" +
@@ -97,12 +122,14 @@ public class Especiales {
     }
     
     public static String mensajeRepartoPuntos(int puntos_totales, String[] clases){
-        String mensaje = "Ahora es el turno de potenciar tus habilidades. Ten en cuenta"
-                    + " que los " + clases[1] + " son más fuertes, pero apenas tienen maná, los \n"
-                    + clases[0] + " tienen buena defensa gracias a la protección de Saturno, y los " + clases[2]
-                    + " tienen una alta cantidad de maná. Tienes\nen total " + puntos_totales + " puntos. Ninguna habilidad "
-                    + "puede tener más de 100 puntos. \nSi esto ocurriese, o si intentas dar más puntos "
-                    + " de los que tengas disponibles, se te volverá a pedir un valor.";
+        String mensaje = "-------------------------------------------------------------------------------------------------------------------------------------------\n"
+                     + "Ahora es el turno de potenciar tus habilidades. Ten en cuenta"
+                     + " que los " + clases[1] + " son más fuertes, pero apenas tienen maná, los \n"
+                     + clases[0] + " tienen buena defensa gracias a la protección de Saturno, y los " + clases[2]
+                     + " tienen una alta cantidad de maná.\nTienes en total " + puntos_totales + " puntos. Ninguna habilidad "
+                     + "puede tener más de 100 puntos. \nSi esto ocurriese, o si intentas dar más puntos "
+                     + "de los que tengas disponibles, se te volverá a pedir un valor.\n"
+                     + "-------------------------------------------------------------------------------------------------------------------------------------------\n";
         
         return mensaje;
     }
