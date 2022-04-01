@@ -158,6 +158,7 @@ public class CombateJuegoEstrategia {
         //atributos de cada jugador
         System.out.println(Especiales.muestraAtributos(atributos, tabla_atributos));
         
+        //Variables para controlar el combate, tanto su transcurso como el momento en el que terminará
         int turno_ataque,turno_defensa, rondas, jugador_con_turno;
         int puntos_vitalidad_p1 = 0, puntos_vitalidad_p2 = 0;
         int ataque, defensa, impacto;
