@@ -40,7 +40,7 @@ public class CombateJuegoEstrategia {
                 if(i == 0){
                     System.out.print("\nEmpecemos con tu identidad, tu nombre, aquello por lo que se te conocerá: ");
                 }else{
-                    System.out.println("Pasemos al segundo protagonista de nuestra historia: ");
+                    System.out.print("Pasemos al segundo protagonista de nuestra historia: ");
                 }
                 nombre = teclado.next();
             }while(nombre.equals(""));
@@ -203,8 +203,6 @@ public class CombateJuegoEstrategia {
                     }
                     puntos_vida[0] = tabla_atributos[0][pos_vida];
                     puntos_vida[1] = tabla_atributos[1][pos_vida];
-//                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
-//                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
                     
                     break;
                 case 'E':
@@ -225,9 +223,8 @@ public class CombateJuegoEstrategia {
                             System.out.println("No tienes maná suficiente para volver a recuperar vida.\n");
                         }
 
-                        puntos_vida[jugador_con_turno] = tabla_atributos[jugador_con_turno][pos_vida];
-    //                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
-    //                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
+                        puntos_vida[0] = tabla_atributos[0][pos_vida];
+                        puntos_vida[1] = tabla_atributos[1][pos_vida];
                     }else{
                         System.out.println("No tienes puntos de maná.");
                     }
