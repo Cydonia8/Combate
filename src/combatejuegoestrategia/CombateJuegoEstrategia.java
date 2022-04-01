@@ -137,17 +137,17 @@ public class CombateJuegoEstrategia {
                         break;
                     case "Guardianes de Saturno":
                         if(tabla_puntos_asignados[i][j] >= 10 && tabla_puntos_asignados[i][j] <= 44){
-                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/15;
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/10;
                             tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/8;
                             tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
                             tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/10;
                         }else if(tabla_puntos_asignados[i][j] >= 45 && tabla_puntos_asignados[i][j] <= 74){
-                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/14;
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/10;
                             tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/7;
                             tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
                             tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/9;
                         }else{
-                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/13;
+                            tabla_atributos[i][0] += tabla_puntos_asignados[i][j]/9;
                             tabla_atributos[i][1] += tabla_puntos_asignados[i][j]/5;
                             tabla_atributos[i][2] += tabla_puntos_asignados[i][j]/9;
                             tabla_atributos[i][3] += tabla_puntos_asignados[i][j]/8;
@@ -269,7 +269,7 @@ public class CombateJuegoEstrategia {
             }
         }        
         //Se imprime el nombre del ganador y su avatar por medio del HashMap
-        System.out.println("Victoria de "+nombres_jugadores[mayor]);
+        System.out.println("¡Victoria de "+nombres_jugadores[mayor]+"!");
         System.out.println(clases_jugadores.get(nombres_jugadores[mayor]));
     }
 }

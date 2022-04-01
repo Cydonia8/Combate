@@ -92,8 +92,7 @@ public class Especiales {
     }
     
     public static String avatar_protectores(){
-        final String avatar_protectores = "  "
-                + "  MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKKXWMMMMMMMMMMMMMMMMMMMMMMMMMMM\n" +
+        final String avatar_protectores = "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKKXWMMMMMMMMMMMMMMMMMMMMMMMMMMM\n" +
                     "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNKkc'...;dXMMMMMMMMMMMMMMMMMMMMMMMMM\n" +
                     "MMMMMMMMMMMMMMMWWWWWMMMMMMMMMMMMNk;.,loc.  ,OWMMMMMMMMMMMMMMMMMMMMMMMM\n" +
                     "MMMWOl::::::::;;;;;dXMMMMMMMMMMMk. .cNMWKdxKWMWMMMMMMMMMMMMMMMMMMMMMMM\n" +
