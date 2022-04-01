@@ -14,6 +14,7 @@ public class CombateJuegoEstrategia {
         Scanner teclado  = new Scanner(System.in);
         Random aleatorio = new Random();
         
+        //Variables, matrices, arrays y HashMap que se van a usar para controlar el funcionamiento del juego
         int n_jugadores = 2;
         int[]puntos_vida = new int[n_jugadores];
         
@@ -29,6 +30,7 @@ public class CombateJuegoEstrategia {
         String[] clases_escogidas = new String[n_jugadores];
         HashMap<String,String> clases_jugadores = new HashMap<>();
         
+        //Mensaje que se imprime usando la clase propia Especiales
         System.out.println(Especiales.mensajeMundo());
         
         //Introducción de datos de los personajes
@@ -90,9 +92,7 @@ public class CombateJuegoEstrategia {
 
         }
                 
-        //Configuración de los atributos para los personajes
-        //Estas variables controlan los índices de los arrays de ponderaciones de cada clase
-       
+        //Configuración de los atributos para los personajes por medio de matrices que contienen los puntos asignados y los atributos generales       
         for (int i = 0; i < n_jugadores; i++) {
             for (int j = 0; j < atributos.length; j++) {
                 switch(clases_escogidas[i]){
@@ -160,7 +160,6 @@ public class CombateJuegoEstrategia {
         
         //Variables para controlar el combate, tanto su transcurso como el momento en el que terminará
         int turno_ataque,turno_defensa, rondas, jugador_con_turno;
-        int puntos_vitalidad_p1 = 0, puntos_vitalidad_p2 = 0;
         int ataque, defensa, impacto;
         char eleccion;
         int pos_vida = 1;
@@ -175,6 +174,8 @@ public class CombateJuegoEstrategia {
         rondas = 0;
         jugador_con_turno = 0;
         System.out.println(Especiales.mensajeCombate());
+        //Comienza el combate, para lo cual se usa el do while, controlando si en algún momento la vitalidad
+        //de algún personaje llega a 0. Estructura switch case con menú para incluir opción de atacar y de recuperar vida
         do{
             rondas++;
             System.out.println("¡Turno del jugador "+(turno_ataque+1)+"!");
@@ -260,13 +261,15 @@ public class CombateJuegoEstrategia {
             
         }while(!perdedor_encontrado);
         
+        //Se ve qué jugador tiene más puntos de vida, ya que éste será el que haya ganado de los dos
         int mayor = 0;
         for (int i = 0; i < puntos_vida.length; i++) {
             if(puntos_vida[i] > puntos_vida[mayor]){
                 mayor = i;
             }
         }        
-            System.out.println("Victoria de "+nombres_jugadores[mayor]);
-            System.out.println(clases_jugadores.get(nombres_jugadores[mayor]));
+        //Se imprime el nombre del ganador y su avatar por medio del HashMap
+        System.out.println("Victoria de "+nombres_jugadores[mayor]);
+        System.out.println(clases_jugadores.get(nombres_jugadores[mayor]));
     }
 }
