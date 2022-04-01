@@ -15,6 +15,7 @@ public class CombateJuegoEstrategia {
         Random aleatorio = new Random();
         
         int n_jugadores = 2;
+        int[]puntos_vida = new int[n_jugadores];
         
         String[]puntos_nombres = {"Fuerza","Fe","Determinación","Influjo","Astucia"};
         String[]atributos = {"Ataque","Vida","Defensa","Mana"};
@@ -32,7 +33,7 @@ public class CombateJuegoEstrategia {
         for (int i = 0; i < n_jugadores; i++) {
                     
             do{
-                System.out.println("¿Qué nombre quieres para tu personaje? ");
+                System.out.print("¿Qué nombre quieres para tu personaje? ");
                 nombre = teclado.next();
             }while(nombre.equals(""));
             nombres_jugadores[i] = nombre;
@@ -149,7 +150,7 @@ public class CombateJuegoEstrategia {
         //atributos de cada jugador
         System.out.println(Especiales.muestraAtributos(atributos, tabla_atributos));
         
-        int turno_ataque,turno_defensa, rondas;
+        int turno_ataque,turno_defensa, rondas, jugador_con_turno;
         int puntos_vitalidad_p1 = 0, puntos_vitalidad_p2 = 0;
         int ataque, defensa, impacto;
         char eleccion;
@@ -157,10 +158,13 @@ public class CombateJuegoEstrategia {
         int pos_mana = 3;
         int pos_ataque = 0;
         int pos_defensa = 2;
+        int contador;
+        boolean perdedor_encontrado = false;
         
         turno_ataque = 0;
         turno_defensa = 1;
         rondas = 0;
+        jugador_con_turno = 0;
         do{
             rondas++;
             System.out.println("¡Turno del jugador "+(turno_ataque+1)+"!");
@@ -186,56 +190,59 @@ public class CombateJuegoEstrategia {
                     }else{
                         System.out.println("¡Gana el defensor!\n");
                     }
-                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
-                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
+                    puntos_vida[0] = tabla_atributos[0][pos_vida];
+                    puntos_vida[1] = tabla_atributos[1][pos_vida];
+//                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
+//                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
                     
                     break;
                 case 'E':
                     int mana_restado, mana_resultante;
-                    if(rondas == 1){
-                        mana_restado = tabla_atributos[0][pos_mana] / 2;
-                        mana_resultante = tabla_atributos[0][pos_mana] - mana_restado;
-                        System.out.println("Tienes "+tabla_atributos[0][pos_mana]+" puntos de "+atributos[pos_mana]);
-                        System.out.println("Vas a perder la mitad de maná, por lo que te quedarás con "+ mana_resultante+" puntos");
-                        System.out.println("Tu vida aumentará en "+mana_restado +" puntos");
-                        tabla_atributos[0][pos_vida] += mana_restado;
-                        tabla_atributos[0][pos_mana] = mana_resultante;
-                        if(mana_resultante == 1){
-                            System.out.println("Te has quedado sin maná, por lo que no podrás volver a usar el especial.\n"
-                                    + " Si intentas hacerlo, perderás el turno.");
-                        }
-                    }else{
-                        mana_restado = tabla_atributos[1][pos_mana] / 2;
-                        mana_resultante = tabla_atributos[1][pos_mana] - mana_restado;
-                        System.out.println("Tienes "+tabla_atributos[1][pos_mana]+" puntos de "+atributos[pos_mana]);
-                        System.out.println("Vas a perder la mitad de maná, por lo que te quedarás con "+ mana_resultante+" puntos");
-                        System.out.println("Tu vida aumentará en "+mana_restado +" puntos\n");
-                        tabla_atributos[1][pos_vida] += mana_restado;
-                        tabla_atributos[1][pos_mana] = mana_resultante;
-                        if(mana_resultante == 1){
-                            System.out.println("Te has quedado sin maná, por lo que no podrás volver a usar el especial.\n"
-                                    + " Si intentas hacerlo, perderás el turno.");
-                        }
-                    }
-                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
-                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
-                    break;
+
+                    mana_restado = tabla_atributos[jugador_con_turno][pos_mana] / 2;
+                    mana_resultante = tabla_atributos[jugador_con_turno][pos_mana] - mana_restado;
                     
+                    System.out.println("Tienes "+tabla_atributos[jugador_con_turno][pos_mana]+" puntos de "+atributos[pos_mana]);
+                    System.out.println("Vas a perder la mitad de maná, por lo que te quedarás con "+ mana_resultante+" puntos");
+                    System.out.println("Tu vida aumentará en "+mana_restado +" puntos\n");
+                    
+                    tabla_atributos[jugador_con_turno][pos_vida] += mana_restado;
+                    tabla_atributos[jugador_con_turno][pos_mana] = mana_resultante;
+                    
+                    if(mana_resultante == 1){
+                        System.out.println("Te has quedado sin maná, por lo que no podrás volver a usar el especial.\n"
+                                + "Si intentas hacerlo, perderás el turno.\n");
+                    }
+                    puntos_vida[jugador_con_turno] = tabla_atributos[jugador_con_turno][pos_vida];
+//                    puntos_vitalidad_p1 = tabla_atributos[0][pos_vida];
+//                    puntos_vitalidad_p2 = tabla_atributos[1][pos_vida];
+                    break;
             }
-            
-            
-            System.out.println("Puntos de vida del jugador 1: "+puntos_vitalidad_p1);
-            System.out.println("Puntos de vida del jugador 2: "+puntos_vitalidad_p2+"\n");
+             
+            System.out.println("Puntos de vida del jugador 1: "+puntos_vida[0]);
+            System.out.println("Puntos de vida del jugador 2: "+puntos_vida[1]+"\n");
             
             turno_ataque++;
             turno_defensa--;
+            jugador_con_turno++;
             if(rondas == 2){
                 turno_ataque = 0;
                 turno_defensa = 1;
                 rondas = 0;
             }
+            if(jugador_con_turno == n_jugadores){
+                jugador_con_turno = 0;
+            }
             
-        }while(puntos_vitalidad_p1 > 0 && puntos_vitalidad_p2 > 0);
+            contador = 0;
+            while(!perdedor_encontrado && contador < jugador_con_turno){
+                if(puntos_vida[contador] <= 0){
+                    perdedor_encontrado = true;
+                }
+                contador++;
+            }
+            
+        }while(!perdedor_encontrado);
         
         if(puntos_vitalidad_p1 > puntos_vitalidad_p2){
             System.out.println("Victoria del jugador 1: "+nombres_jugadores[0]);
