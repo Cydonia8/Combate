@@ -174,6 +174,7 @@ public class CombateJuegoEstrategia {
         turno_defensa = 1;
         rondas = 0;
         jugador_con_turno = 0;
+        System.out.println(Especiales.mensajeCombate());
         do{
             rondas++;
             System.out.println("¡Turno del jugador "+(turno_ataque+1)+"!");

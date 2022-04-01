@@ -146,4 +146,13 @@ public class Especiales {
         }
         return resultado;
     }
+    
+    public static String mensajeCombate(){
+        String mensaje = "----------------------------------------------------------------------------------------------------\n"
+                + " Ahora os tocará enfrentaros entre vosotros. Podréis atacar o recuperar vida en"
+                + " función de vuestra\n cantidad de maná. Lo que no podréis hacer bajo nignún concepto"
+                + " es...huir.\n ¡Que empiece el duelo!\n"
+                + "----------------------------------------------------------------------------------------------------";
+        return mensaje;
+    }
 }
